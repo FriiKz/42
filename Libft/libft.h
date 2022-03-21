@@ -6,7 +6,7 @@
 /*   By: lbusi <lbusi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 20:51:57 by lbusi             #+#    #+#             */
-/*   Updated: 2022/03/19 12:42:13 by lbusi            ###   ########.fr       */
+/*   Updated: 2022/03/20 18:57:16 by lbusi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,5 @@ void			*ft_memchr(const void *s, int c, size_t n);
 int				ft_memcmp(const void *s1, const void *s2, size_t n);
 void            ft_bzero(void *s, size_t n);
 void			*ft_calloc (size_t nitems, size_t size);
-
+char			*ft_strdup(const char *s1);
 #endif

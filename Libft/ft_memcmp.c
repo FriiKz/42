@@ -6,7 +6,7 @@
 /*   By: lbusi <lbusi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 19:09:37 by lbusi             #+#    #+#             */
-/*   Updated: 2022/03/18 19:54:00 by lbusi            ###   ########.fr       */
+/*   Updated: 2022/03/20 18:59:09 by lbusi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ int		ft_memcmp(const void *s1, const void *s2, size_t n)
 	return (*(unsigned char *)&s1[i] - *(unsigned char *)&s2[i]);
 }
 
-#include <stdio.h>
+// #include <stdio.h>
 
-int main()
-{
-	char c[] = "ciao";
-	char d[] = "ciao";
-	printf("%d", ft_memcmp(c, d, 4));
-}
+// int main()
+// {
+// 	char c[] = "ciao";
+// 	char d[] = "ciao";
+// 	printf("%d", ft_memcmp(c, d, 4));
+// }

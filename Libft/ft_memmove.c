@@ -6,7 +6,7 @@
 /*   By: lbusi <lbusi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 15:00:38 by lbusi             #+#    #+#             */
-/*   Updated: 2022/03/18 16:44:42 by lbusi            ###   ########.fr       */
+/*   Updated: 2022/03/20 18:59:20 by lbusi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	}
 	return (dest);
 }
-#include <stdio.h>
+// #include <stdio.h>
 
-int main()
-{
-    char c[] = "ciao";
-    char d[] = "bello";
-    printf("%s\n", memmove(c, d, 5));
-    printf("%s", ft_memmove(c, d, 5));
-}
+// int main()
+// {
+//     char c[] = "ciao";
+//     char d[] = "bello";
+//     printf("%s\n", memmove(c, d, 5));
+//     printf("%s", ft_memmove(c, d, 5));
+// }
