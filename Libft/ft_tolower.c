@@ -6,7 +6,7 @@
 /*   By: lbusi <lbusi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 18:01:36 by lbusi             #+#    #+#             */
-/*   Updated: 2022/03/18 16:23:24 by lbusi            ###   ########.fr       */
+/*   Updated: 2022/03/24 20:03:33 by lbusi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 int	ft_tolower(int letter)
 {
 	while (letter >= 'A' && letter <= 'Z')
-		letter = letter +32;
+		letter = letter + 32;
 	return (letter);
 }

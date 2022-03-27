@@ -1,27 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbusi <lbusi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/18 16:41:29 by lbusi             #+#    #+#             */
-/*   Updated: 2022/03/27 15:20:53 by lbusi            ###   ########.fr       */
+/*   Created: 2022/03/22 12:06:04 by lbusi             #+#    #+#             */
+/*   Updated: 2022/03/27 15:17:27 by lbusi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	size_t	i;
+	size_t	j;
+	char	*ptr;
 
+	if (!s)
+		return (0);
+	if (len > ft_strlen(s))
+		len = ft_strlen(s);
 	i = 0;
-	while (n-- > 0)
+	j = 0;
+	ptr = (char *)malloc(sizeof(char) * (len + 1));
+	if (!ptr)
+		return (0);
+	while (s[i])
 	{
-		if (*(unsigned char *)&s[i] == *(unsigned char *)&c)
-			return ((unsigned char *)&s[i]);
+		if (i >= start && j < len)
+		{
+			ptr[j] = s[i];
+			j++;
+		}
 		i++;
 	}
-	return (NULL);
+	ptr[j] = '\0';
+	return (ptr);
 }

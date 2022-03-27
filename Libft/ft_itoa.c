@@ -1,27 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbusi <lbusi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/18 16:41:29 by lbusi             #+#    #+#             */
-/*   Updated: 2022/03/27 15:20:53 by lbusi            ###   ########.fr       */
+/*   Created: 2022/03/23 19:10:31 by lbusi             #+#    #+#             */
+/*   Updated: 2022/03/25 16:47:56 by lbusi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+size_t	num_len(int n)
 {
 	size_t	i;
 
-	i = 0;
-	while (n-- > 0)
+	i = 1;
+	while (n / 10)
 	{
-		if (*(unsigned char *)&s[i] == *(unsigned char *)&c)
-			return ((unsigned char *)&s[i]);
+		n = n / 10;
 		i++;
 	}
-	return (NULL);
+	return (i);
+}
+
+char	*ft_itoa(int n)
+{
+	long int		num;
+	char			*dst;
+	size_t			cifre;
+
+	num = n;
+	cifre = num_len(n);
+	if (n < 0)
+	{
+		num *= -1;
+		cifre++;
+	}
+	dst = (char *)malloc(sizeof(char) * (cifre + 1));
+	if (!dst)
+		return (NULL);
+	dst[cifre] = 0;
+	while (cifre)
+	{
+		cifre--;
+		dst[cifre] = (num % 10) + '0';
+		num = num / 10;
+	}
+	if (n < 0)
+		dst[0] = '-';
+	return (dst);
 }

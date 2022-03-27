@@ -6,7 +6,7 @@
 /*   By: lbusi <lbusi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 14:46:29 by lbusi             #+#    #+#             */
-/*   Updated: 2022/03/20 18:59:24 by lbusi            ###   ########.fr       */
+/*   Updated: 2022/03/27 15:20:38 by lbusi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	*ft_memset(void *str, int c, size_t n)
 {
-	unsigned int	i;
-	int	j;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
 	j = 0;

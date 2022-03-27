@@ -6,15 +6,15 @@
 /*   By: lbusi <lbusi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 17:35:54 by lbusi             #+#    #+#             */
-/*   Updated: 2022/03/18 16:22:30 by lbusi            ###   ########.fr       */
+/*   Updated: 2022/03/27 15:34:02 by lbusi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libft.h"
 
 int	ft_toupper(int letter)
 {
 	while (letter >= 'a' && letter <= 'z')
-		letter = letter -32;
+		letter = letter - 32;
 	return (letter);
 }
