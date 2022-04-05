@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_hex_printf_utils.c                              :+:      :+:    :+:   */
+/*   ft_hex_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbusi <lbusi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 18:45:20 by lbusi             #+#    #+#             */
-/*   Updated: 2022/04/05 16:31:57 by lbusi            ###   ########.fr       */
+/*   Updated: 2022/04/05 18:30:32 by lbusi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ int		ft_hex_len(uintptr_t num)
 	return (i);
 }
 
-void	ft_hex(uintptr_t num, const char type)
+void	ft_hex(uintptr_t num, const char format)
 {
 	 if (num >= 16)
 	 {
-		 ft_hex(num / 16, type);
-		 ft_hex(num % 16, type);
+		 ft_hex(num / 16, format);
+		 ft_hex(num % 16, format);
 	 }
 	 else
 	 {
@@ -38,19 +38,19 @@ void	ft_hex(uintptr_t num, const char type)
 				ft_putchar(num + '0');
 		else
 		{
-			if (type == 'x')
+			if (format == 'x')
 				ft_putchar((num - 10 + 'a'));
-			if (type == 'X')
+			if (format == 'X')
 				ft_putchar(num - 10 + 'A');
 		}
 	 }
 }
 
-int		ft_hex_print(unsigned long long num, const char type)
+int		ft_hex_print(unsigned long long num, const char format)
 {
 	if (num == 0)
-		return (write(1, '0', 1));
+		return (write(1, "0", 1));
 	else
-		ft_put_hex(num, type);
+		ft_hex(num, format);
 	return (ft_hex_len(num));
 }
