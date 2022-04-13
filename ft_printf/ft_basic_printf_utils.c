@@ -6,7 +6,7 @@
 /*   By: lbusi <lbusi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 17:19:14 by lbusi             #+#    #+#             */
-/*   Updated: 2022/04/13 18:56:09 by lbusi            ###   ########.fr       */
+/*   Updated: 2022/04/13 19:39:32 by lbusi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,28 @@ int	ft_putchar(char c)
 
 int	ft_putnbr(int nb)
 {
+	int	temp;
+
+	temp = 0;
 	if (nb == -2147483648)
 	{
-		ft_putnbr(nb / 10);
-		ft_putchar('8');
+		temp += ft_putnbr(nb / 10);
+		temp += ft_putchar('8');
 	}
 	else if (nb < 0)
 	{
-		ft_putchar('-');
-		ft_putnbr(-nb);
+		temp += ft_putchar('-');
+		temp += ft_putnbr(-nb);
 	}
 	else
 	{
 		if (nb > 9)
 		{
-			ft_putnbr(nb / 10);
+			temp += ft_putnbr(nb / 10);
 		}
-		ft_putchar(48 + nb % 10);
+		temp += ft_putchar(48 + nb % 10);
 	}
-	return (len(nb, 10));
+	return (temp);
 }
 
 int	ft_put_uint_nbr(unsigned int nb)
