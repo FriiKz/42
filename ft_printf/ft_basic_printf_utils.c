@@ -6,7 +6,7 @@
 /*   By: lbusi <lbusi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 17:19:14 by lbusi             #+#    #+#             */
-/*   Updated: 2022/04/13 18:31:36 by lbusi            ###   ########.fr       */
+/*   Updated: 2022/04/13 18:56:09 by lbusi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,17 @@ int	ft_putstr(char *str)
 	int	i;
 
 	i = 0;
+	if (!str)
+	{
+		ft_putstr("(null)");
+		return (6);
+	}
 	while (str[i])
 	{
 		ft_putchar(str[i]);
 		i++;
 	}
-	return (1);
+	return (i);
 }
 
 int	ft_strlen(const char *str)

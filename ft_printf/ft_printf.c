@@ -6,7 +6,7 @@
 /*   By: lbusi <lbusi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 17:57:54 by lbusi             #+#    #+#             */
-/*   Updated: 2022/04/13 18:33:57 by lbusi            ###   ########.fr       */
+/*   Updated: 2022/04/13 19:08:33 by lbusi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	print_type(const char type, va_list parameter)
 	return (1);
 }
 
-int	ft_printf(const char *a, ...)
+int	ft_printf(const char *s, ...)
 {
 	va_list		arg;
 	int			i;
@@ -39,21 +39,21 @@ int	ft_printf(const char *a, ...)
 
 	i = 0;
 	temp = 0;
-	va_start(arg, a);
-	while (a[i])
+	va_start(arg, s);
+	while (s[i])
 	{
-		if (a[i] == '%')
+		if (s[i] == '%')
 		{
 			i++;
-			temp = temp + print_type(a[i], arg);
+			temp = temp + print_type(s[i], arg);
 			i++;
 		}
-		if (!a[i])
+		if (!s[i])
 			return (temp);
-		if (a[i] != '%')
+		if (s[i] != '%')
 		{
 			temp++;
-			ft_putchar(a[i]);
+			ft_putchar(s[i]);
 			i++;
 		}
 	}
