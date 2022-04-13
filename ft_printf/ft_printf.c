@@ -6,7 +6,7 @@
 /*   By: lbusi <lbusi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 17:57:54 by lbusi             #+#    #+#             */
-/*   Updated: 2022/04/13 19:08:33 by lbusi            ###   ########.fr       */
+/*   Updated: 2022/04/13 19:09:30 by lbusi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	print_type(const char type, va_list parameter)
 		return (ft_putstr(va_arg(parameter, char *)));
 	else if (type == 'p')
 		return (ft_ptr_print(va_arg(parameter, uintptr_t)));
-	else if (type == 'i' || type == 'd')
+	else if (type == 'd' || type == 'i')
 		return (ft_putnbr(va_arg(parameter, int)));
 	else if (type == 'u')
 		return (ft_put_uint_nbr(va_arg(parameter, unsigned int)));
