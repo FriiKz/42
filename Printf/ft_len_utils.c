@@ -1,22 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_char_utils.c                                    :+:      :+:    :+:   */
+/*   ft_len_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbusi <lbusi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/05 17:46:40 by lbusi             #+#    #+#             */
-/*   Updated: 2022/04/13 18:32:40 by lbusi            ###   ########.fr       */
+/*   Created: 2022/04/13 18:30:51 by lbusi             #+#    #+#             */
+/*   Updated: 2022/04/13 18:31:28 by lbusi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "printf.h"
 
-int	ft_print_char(va_list n)
+int	len(int nb, int base)
 {
-	char	buff;
+	int	i;
 
-	buff = va_arg(n, int);
-	ft_putchar(buff);
-	return (1);
+	i = 0;
+	if (nb <= 0)
+		++i;
+	while (nb && i++)
+		nb = nb / base;
+	return (i);
+}
+
+int	long_len(long long nb, int base)
+{
+	int	i;
+
+	i = 0;
+	if (nb <= 0)
+		++i;
+	while (nb && ++i)
+		nb = nb / base;
+	return (i);
 }
