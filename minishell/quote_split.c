@@ -6,7 +6,7 @@
 /*   By: lbusi <lbusi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 10:49:00 by lbusi             #+#    #+#             */
-/*   Updated: 2023/04/14 18:50:04 by lbusi            ###   ########.fr       */
+/*   Updated: 2023/04/17 16:57:15 by lbusi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	quote_counter(char *s, t_data *t)
 	i = 0;
 	while (s[i])
 	{
-		if (s[i] == '\"')
+		if (s[i] == '\'')
 			t->quotes++;
 		i++;
 	}
@@ -35,10 +35,10 @@ size_t	word_count(char const *s, char c, t_data *t)
 	word_update = 0;
 	while (s[i])
 	{
-		if (s[i] == '\"')
+		if (s[i] == '\'')
 		{
 			i++;
-			while (s[i] != '\"' && s[i])
+			while (s[i] != '\'' && s[i])
 				i++;
 			i++;
 			word_update++;
@@ -71,11 +71,11 @@ char	**ft_split(char const *s, char c, t_data *t)
 		return (NULL);
 	while (*s)
 	{
-		if (*s == '\"')
+		if (*s == '\'')
 		{
 			j = 0;
 			s++;
-			while (*s != '\"' && *s && ++j)
+			while (*s != '\'' && *s && ++j)
 				s++;
 			dst[i++] = ft_substr(s - j, 0, j);
 			//printf("%d\n", j);

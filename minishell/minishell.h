@@ -6,7 +6,7 @@
 /*   By: lbusi <lbusi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:50:28 by lbusi             #+#    #+#             */
-/*   Updated: 2023/04/14 18:26:55 by lbusi            ###   ########.fr       */
+/*   Updated: 2023/04/17 17:45:34 by lbusi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_data
 size_t		ft_strlen(const char *str);
 size_t		word_count(char const *s, char c, t_data *t);
 int			ft_atoi(const char *str);
+int			check_build_in(char *cmd);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 char		**ft_split(char const *s, char c, t_data *t);
 void		ft_free(t_data *t);
@@ -66,6 +67,7 @@ void		ft_export(char **env);
 void		ft_exit(t_data *t);
 void		echo_flag(t_data *t);
 void		sig_handler(int sig);
+void		ctrl_d(char *str);
 void		ft_print_matrix(t_data *t);
 extern void	rl_replace_line(const char *text, int clear_undo);
 void		ft_sig_handling(t_sig_handling_opcode opcode);

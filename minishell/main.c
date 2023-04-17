@@ -6,7 +6,7 @@
 /*   By: lbusi <lbusi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:50:15 by lbusi             #+#    #+#             */
-/*   Updated: 2023/04/14 18:16:06 by lbusi            ###   ########.fr       */
+/*   Updated: 2023/04/17 16:32:20 by lbusi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	main(int argc, char **argv, char **env)
 	while (1)
 	{
 		command = readline("minishell> ");
+		ctrl_d(command);
 		quote_counter(command, &t);
 		//printf("%d\n", t.quotes);
 		t.matrix = ft_split(command, ' ', &t);

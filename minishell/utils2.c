@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split.c                                            :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbusi <lbusi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 11:45:00 by lbusi             #+#    #+#             */
-/*   Updated: 2023/04/14 18:18:11 by lbusi            ###   ########.fr       */
+/*   Updated: 2023/04/17 17:45:26 by lbusi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,23 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	}
 	ptr[j] = '\0';
 	return (ptr);
+}
+
+int	check_build_in(char *cmd)
+{
+	if (!ft_strcmp_s("pwd", ft_strlen("pwd"), cmd, ft_strlen(cmd)))
+		return (1);
+	else if (!ft_strcmp_s("cd", ft_strlen("cd"), cmd, ft_strlen(cmd)))
+		return (1);
+	else if (!ft_strcmp_s("export", ft_strlen("export"), cmd, ft_strlen(cmd)))
+		return (1);
+	else if (!ft_strcmp_s("unset", ft_strlen("unset"), cmd, ft_strlen(cmd)))
+		return (1);
+	else if (!ft_strcmp_s("echo", ft_strlen("echo"), cmd, ft_strlen(cmd)))
+		return (1);
+	else if ((!ft_strcmp_s("exit", ft_strlen("exit"), cmd, ft_strlen(cmd))))
+		return (1);
+	else if (!ft_strcmp_s("env", ft_strlen("env"), cmd, ft_strlen(cmd)))
+		return (1);
+	return (0);
 }
