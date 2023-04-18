@@ -6,7 +6,7 @@
 /*   By: lbusi <lbusi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:50:15 by lbusi             #+#    #+#             */
-/*   Updated: 2023/04/17 16:32:20 by lbusi            ###   ########.fr       */
+/*   Updated: 2023/04/18 20:51:09 by lbusi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,25 @@
 int	main(int argc, char **argv, char **env)
 {
 	t_data	t;
-	char	*command;
 
 	(void)argc;
 	(void)argv;
-	t.quotes = 0;
-	t.i = 0;
-	t.cmd = -1;
+	struct_init(&t);
 	ft_sig_handling(SIG_INITIAL);
 	while (1)
 	{
-		command = readline("minishell> ");
-		ctrl_d(command);
-		quote_counter(command, &t);
-		//printf("%d\n", t.quotes);
-		t.matrix = ft_split(command, ' ', &t);
-		//ft_print_matrix(&t);
+		t.command = readline("minishell> ");
+		ctrl_d(&t);
+		create_env(&t, env);
+		t.parsed = malloc(sizeof(char) * ft_strlen(t.command));
+		find_dollar(&t);
+		apici_quotes(&t);
+		if (t.closed != 1)
+		{
+			printf("unclosed quotes\n");
+			t.closed = 0;
+		}
+		t.matrix = ft_split(t.parsed, ' ', &t);
 		check_cmd(&t);
 		if (strcmp(t.matrix[0], "echo") == 0 && t.cmd == 1)
 			echo(&t);
@@ -56,8 +59,9 @@ int	main(int argc, char **argv, char **env)
 			ft_export(env);
 			ft_free(&t);
 		}
-		add_history(command);
-		free(command);
+		add_history(t.command);
+		free(t.command);
+		free(t.parsed);
 	}
 	return (0);
 }

@@ -6,25 +6,11 @@
 /*   By: lbusi <lbusi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 10:49:00 by lbusi             #+#    #+#             */
-/*   Updated: 2023/04/17 16:57:15 by lbusi            ###   ########.fr       */
+/*   Updated: 2023/04/18 15:56:18 by lbusi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	quote_counter(char *s, t_data *t)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == '\'')
-			t->quotes++;
-		i++;
-	}
-	//printf("%d\n", t->quotes);
-}
 
 size_t	word_count(char const *s, char c, t_data *t)
 {

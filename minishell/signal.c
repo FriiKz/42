@@ -6,7 +6,7 @@
 /*   By: lbusi <lbusi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 13:10:31 by lbusi             #+#    #+#             */
-/*   Updated: 2023/04/17 16:31:53 by lbusi            ###   ########.fr       */
+/*   Updated: 2023/04/18 16:01:29 by lbusi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ void	ft_sig_handling(t_sig_handling_opcode opcode)
 		tcsetattr(STDIN_FILENO, TCSANOW, &tty_attrs_old);
 }
 
-void	ctrl_d(char *str)
+void	ctrl_d(t_data *t)
 {
-	if (str == NULL)
+	if (t->command == NULL)
 	{
 		printf("exit\n");
 		exit(0);
