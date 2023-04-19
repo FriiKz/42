@@ -6,7 +6,7 @@
 /*   By: lbusi <lbusi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 18:31:19 by lbusi             #+#    #+#             */
-/*   Updated: 2023/04/18 20:50:48 by lbusi            ###   ########.fr       */
+/*   Updated: 2023/04/19 12:34:33 by lbusi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,6 @@ void	check_env_value(t_data *t, int len)
 		}
 		i++;
 	}
-	if (ok != 1)
-		unparser(t);
 }
 
 int	index_finder(t_data *t)
@@ -144,7 +142,7 @@ void	command_into_parsed(t_data *t, char *tmp_command)
 	int	i;
 
 	i = 0;
-	t->parsed = malloc(sizeof(char) * ft_strlen(tmp_command));
+	t->parsed = malloc(sizeof(char) * ft_strlen(tmp_command) + 1);
 	if (!t->parsed)
 		return ;
 	while (tmp_command[i])
@@ -153,20 +151,22 @@ void	command_into_parsed(t_data *t, char *tmp_command)
 		i++;
 	}
 	t->parsed[i] = tmp_command[i];
+	printf("%s\n", t->parsed);
 }
 
-void	unparser(t_data *t)
-{
-	int	i;
+// void	unparser(t_data *t)
+// {
+// 	int	i;
 
-	i = 0;
-	t->parsed = malloc(sizeof(char) * ft_strlen(t->command));
-	if (!t->parsed)
-		return ;
-	while (t->command[i])
-	{
-		t->parsed[i] = t->command[i];
-		i++;
-	}
-	t->parsed[i] = t->command[i];
-}
+// 	i = 0;
+// 	free(t->parsed);
+// 	t->parsed = malloc(sizeof(char) * ft_strlen(t->command));
+// 	if (!t->parsed)
+// 		return ;
+// 	while (t->command[i])
+// 	{
+// 		t->parsed[i] = t->command[i];
+// 		i++;
+// 	}
+// 	t->parsed[i] = t->command[i];
+// }

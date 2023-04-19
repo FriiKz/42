@@ -6,7 +6,7 @@
 /*   By: lbusi <lbusi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:50:15 by lbusi             #+#    #+#             */
-/*   Updated: 2023/04/18 20:51:09 by lbusi            ###   ########.fr       */
+/*   Updated: 2023/04/19 12:06:44 by lbusi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	main(int argc, char **argv, char **env)
 		create_env(&t, env);
 		t.parsed = malloc(sizeof(char) * ft_strlen(t.command));
 		find_dollar(&t);
+		write(1, "dio\n", 4);
 		apici_quotes(&t);
 		if (t.closed != 1)
 		{
