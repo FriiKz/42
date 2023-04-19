@@ -6,13 +6,13 @@
 #    By: lbusi <lbusi@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/18 16:22:50 by lbusi             #+#    #+#              #
-#    Updated: 2023/04/18 15:35:10 by lbusi            ###   ########.fr        #
+#    Updated: 2023/04/19 17:22:19 by lbusi            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME		= minishell
-CC			= gcc
+CC			= gcc -g
 CFLAGS		= -Wall -Wextra -Werror
 RM			= rm -rf
 INCLUDE		= minishell.h

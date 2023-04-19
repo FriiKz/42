@@ -6,34 +6,36 @@
 /*   By: lbusi <lbusi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 18:31:19 by lbusi             #+#    #+#             */
-/*   Updated: 2023/04/19 12:34:33 by lbusi            ###   ########.fr       */
+/*   Updated: 2023/04/19 18:54:36 by lbusi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	find_dollar(t_data *t)
+int	find_dollar(t_data *t, char *str)
 {
 	int	i;
 	int	len;
 
 	i = 0;
 	len = 0;
-	while (t->command[i])
+	while (str[i])
 	{
-		if (t->command[i] == '$')
+		if (str[i] == '$')
 		{
 			i++;
-			while (t->command[i] && t->command[i] != ' ')
+			while (str[i] && str[i] != ' ')
 			{
 				i++;
 				len++;
 			}
-			check_env_value(t, len);
+			check_env_value(t, str, len);
+			return (1);
 		}
 		else
 			i++;
 	}
+	return (0);
 }
 
 int	env_strncmp(const char *s1, const char *s2, size_t n, int j)
@@ -51,34 +53,29 @@ int	env_strncmp(const char *s1, const char *s2, size_t n, int j)
 	return ((unsigned char)s1[i] - (unsigned char)s2[j]);
 }
 
-void	check_env_value(t_data *t, int len)
+void	check_env_value(t_data *t, char *str, int len)
 {
 	int	i;
 	int	j;
-	int	ok;
 	int	k;
 
 	i = 0;
-	ok = 0;
 	j = 0;
 	while (t->my_env[i])
 	{
-		k = index_finder(t);
-		if (env_strncmp(t->my_env[i], t->command, len, k) == 0)
-		{
-			ok = 1;
-			expander(t, i);
-		}
+		k = index_finder(str);
+		if (env_strncmp(t->my_env[i], str, len, k) == 0)
+			expander(t, str, i);
 		i++;
 	}
 }
 
-int	index_finder(t_data *t)
+int	index_finder(char *str)
 {
 	int	i;
 
 	i = 0;
-	while (t->command[i] && t->command[i] != '$')
+	while (str[i] && str[i] != '$')
 	{
 		i++;
 	}
@@ -86,7 +83,7 @@ int	index_finder(t_data *t)
 	return (i);
 }
 
-void	expander(t_data *t, int i)
+void	expander(t_data *t, char *str, int i)
 {
 	int		k;
 	int		z;
@@ -97,7 +94,7 @@ void	expander(t_data *t, int i)
 	tmp_env = malloc(sizeof(char) * ft_strlen(t->my_env[i]));
 	if (!tmp_env)
 		return ;
-	tmp_command = malloc(ft_strlen(t->command) + ft_strlen(t->my_env[i]));
+	tmp_command = malloc(ft_strlen(str) + ft_strlen(t->my_env[i]));
 	if (!tmp_command)
 		return ;
 	j = 0;
@@ -114,13 +111,13 @@ void	expander(t_data *t, int i)
 	}
 	j = 0;
 	k = 0;
-	while (t->command[j] && t->command[j] != '$')
+	while (str[j] && str[j] != '$')
 	{
-		tmp_command[k] = t->command[j];
+		tmp_command[k] = str[j];
 		j++;
 		k++;
 	}
-	while (t->command[j] && t->command[j] != ' ')
+	while (str[j] && str[j] != ' ')
 		j++;
 	while (tmp_env[z])
 	{
@@ -128,13 +125,16 @@ void	expander(t_data *t, int i)
 		k++;
 		z++;
 	}
-	while (t->command[j])
+	while (str[j])
 	{
-		tmp_command[k] = t->command[j];
+		tmp_command[k] = str[j];
 		k++;
 		j++;
 	}
+	tmp_command[k] = (char) NULL;
 	command_into_parsed(t, tmp_command);
+	if (check_dollar(t->parsed))
+		find_dollar(t, t->parsed);
 }
 
 void	command_into_parsed(t_data *t, char *tmp_command)
@@ -151,22 +151,35 @@ void	command_into_parsed(t_data *t, char *tmp_command)
 		i++;
 	}
 	t->parsed[i] = tmp_command[i];
-	printf("%s\n", t->parsed);
 }
 
-// void	unparser(t_data *t)
-// {
-// 	int	i;
+void	unparser(t_data *t)
+{
+	int	i;
 
-// 	i = 0;
-// 	free(t->parsed);
-// 	t->parsed = malloc(sizeof(char) * ft_strlen(t->command));
-// 	if (!t->parsed)
-// 		return ;
-// 	while (t->command[i])
-// 	{
-// 		t->parsed[i] = t->command[i];
-// 		i++;
-// 	}
-// 	t->parsed[i] = t->command[i];
-// }
+	i = 0;
+	free(t->parsed);
+	t->parsed = malloc(sizeof(char) * ft_strlen(t->command));
+	if (!t->parsed)
+		return ;
+	while (t->command[i])
+	{
+		t->parsed[i] = t->command[i];
+		i++;
+	}
+	t->parsed[i] = t->command[i];
+}
+
+int	check_dollar(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '$')
+			return (1);
+		i++;
+	}
+	return (0);
+}

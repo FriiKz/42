@@ -6,7 +6,7 @@
 /*   By: lbusi <lbusi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:50:28 by lbusi             #+#    #+#             */
-/*   Updated: 2023/04/18 20:43:07 by lbusi            ###   ########.fr       */
+/*   Updated: 2023/04/19 16:47:47 by lbusi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ size_t		word_count(char const *s, char c, t_data *t);
 int			ft_atoi(const char *str);
 int			count_env(char **env);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
-int			index_finder(t_data *t);
+int			index_finder(char *str);
+int			check_dollar(char *str);
 void		unparser(t_data *t);
 int			env_strncmp(const char *s1, const char *s2, size_t n, int j);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
@@ -66,9 +67,9 @@ char		**ft_split(char const *s, char c, t_data *t);
 void		ft_free(t_data *t);
 void		pwd(t_data *t);
 void		cd(t_data *t);
-void		find_dollar(t_data *t);
-void		check_env_value(t_data *t, int len);
-void		expander(t_data *t, int i);
+int			find_dollar(t_data *t, char *str);
+void		check_env_value(t_data *t, char *str, int len);
+void		expander(t_data *t, char *str, int i);
 void		echo(t_data *t);
 void		check_echo(t_data *t);
 void		check_cmd(t_data *t);

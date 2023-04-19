@@ -6,11 +6,22 @@
 /*   By: lbusi <lbusi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:50:15 by lbusi             #+#    #+#             */
-/*   Updated: 2023/04/19 12:06:44 by lbusi            ###   ########.fr       */
+/*   Updated: 2023/04/19 18:53:26 by lbusi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	ft_putstr_fd(char *s, int fd)
+{
+	if (!s)
+		return ;
+	while (*s)
+	{
+		write(fd, s, 1);
+		s++;
+	}
+}
 
 int	main(int argc, char **argv, char **env)
 {
@@ -26,17 +37,18 @@ int	main(int argc, char **argv, char **env)
 		ctrl_d(&t);
 		create_env(&t, env);
 		t.parsed = malloc(sizeof(char) * ft_strlen(t.command));
-		find_dollar(&t);
-		write(1, "dio\n", 4);
+		if (!find_dollar(&t, t.command))
+			unparser(&t);
 		apici_quotes(&t);
 		if (t.closed != 1)
 		{
 			printf("unclosed quotes\n");
 			t.closed = 0;
 		}
+		t.matrix = malloc(sizeof(char *) * 100);
 		t.matrix = ft_split(t.parsed, ' ', &t);
 		check_cmd(&t);
-		if (strcmp(t.matrix[0], "echo") == 0 && t.cmd == 1)
+		if (!strcmp(t.matrix[0], "echo") && t.cmd == 1)
 			echo(&t);
 		if (strcmp(t.matrix[0], "pwd") == 0 && t.cmd == 1)
 		{
@@ -61,8 +73,6 @@ int	main(int argc, char **argv, char **env)
 			ft_free(&t);
 		}
 		add_history(t.command);
-		free(t.command);
-		free(t.parsed);
 	}
 	return (0);
 }

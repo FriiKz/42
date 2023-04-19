@@ -6,7 +6,7 @@
 /*   By: lbusi <lbusi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 15:35:49 by lbusi             #+#    #+#             */
-/*   Updated: 2023/04/18 19:09:42 by lbusi            ###   ########.fr       */
+/*   Updated: 2023/04/19 12:56:57 by lbusi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,11 @@ void	apici_quotes(t_data *t)
 	quote = 0;
 	apice = 0;
 	t->closed = 0;
-	while (t->command[i])
+	while (t->parsed[i])
 	{
-		if (t->command[i] == '\'')
+		if (t->parsed[i] == '\'')
 			apice++;
-		else if (t->command[i] == '\"')
+		else if (t->parsed[i] == '\"')
 			quote++;
 		i++;
 	}

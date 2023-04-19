@@ -6,7 +6,7 @@
 /*   By: lbusi <lbusi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 10:49:00 by lbusi             #+#    #+#             */
-/*   Updated: 2023/04/18 15:56:18 by lbusi            ###   ########.fr       */
+/*   Updated: 2023/04/19 16:14:19 by lbusi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ char	**ft_split(char const *s, char c, t_data *t)
 			while (*s != '\'' && *s && ++j)
 				s++;
 			dst[i++] = ft_substr(s - j, 0, j);
-			//printf("%d\n", j);
 			s++;
 		}
 		else if (*s != c)
@@ -73,7 +72,6 @@ char	**ft_split(char const *s, char c, t_data *t)
 			while (*s && *s != c && ++j)
 				s++;
 			dst[i++] = ft_substr(s - j, 0, j);
-			//printf("%d\n", j);
 		}
 		else
 			++s;
@@ -81,8 +79,3 @@ char	**ft_split(char const *s, char c, t_data *t)
 	dst[i] = 0;
 	return (dst);
 }
-
-// void	split_component(t_data *t)
-// {
-	
-// }
